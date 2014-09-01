@@ -1,14 +1,11 @@
 
 import 'dart:html';
-import 'dart:convert';
 
 import 'package:chrome/chrome_app.dart' as chrome;
-//import 'package:messenger/messenger.dart' as messenger;
+import 'package:messenger/messenger.dart' as messenger;
 
-import 'tcp.dart' as tcp;
 
 int boundsChange = 100;
-
 
 
 /**
@@ -26,18 +23,14 @@ void main() {
   
   debug("start listening on local port " + local_tcp_port.toString());
   
-  //start tcp
-   tcp.TcpServer.createServerSocket(local_tcp_port).then((tcp.TcpServer server) {
-     uiListenOnTCPPort(local_tcp_port);
-      
-      server.onAccept.listen((tcp.TcpClient c){
-        c.stream.listen((List<int> data){
-          debug("TCP received: " + UTF8.decode(data));
-          
-          c.write(data);
-        });
-      });
-    });
+  //start tcp signaling
+  messenger.SignalingChannel sc = new messenger.ChromeAppTCPSignaling();
+  
+  sc.onReceive.listen((messenger.NewMessageEvent e){
+    debug("received: " + e.data.toString());
+  });
+  
+  sc.connect({"host":"127.0.0.1", "port":"12345"});
 }
 
 void resizeWindow(MouseEvent event) {

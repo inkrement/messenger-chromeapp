@@ -12,7 +12,7 @@ packages:
   chrome:
     description: chrome
     source: hosted
-    version: "0.6.1"
+    version: "0.6.3"
   collection:
     description: collection
     source: hosted
@@ -21,10 +21,16 @@ packages:
     description: json
     source: hosted
     version: "0.9.1"
-  messenger:
-    description: messenger
+  logging:
+    description: logging
     source: hosted
-    version: "0.0.2"
+    version: "0.9.2"
+  messenger:
+    description:
+      path: "/Users/chris/code/messenger"
+      relative: false
+    source: path
+    version: "0.0.4"
   path:
     description: path
     source: hosted

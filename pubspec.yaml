@@ -2,6 +2,8 @@ name: chrome_packed_dart_app
 description: A sample Chrome packaged application
 dependencies:
   chrome: any
-  messenger: any
+  logging: any
+  messenger:
+    path: /Users/chris/code/messenger
 transformers:
 - chrome
